@@ -319,6 +319,13 @@
       font-style: italic;
     }
 
+    .step-subheading {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
     /* Command reference list used in the "learn the terminal" step —
        each row is a copy-able command plus a plain-English meaning */
     .command-ref {
@@ -431,17 +438,26 @@
           </li>
           <li>Wait for it to finish, then close the window.</li>
         </ol>
-        <p class="step-note">
-          The first time you actually run Claude Code (in Step 5), it&rsquo;ll ask you to log in
-          — or create a free Anthropic account — in your browser.
+
+        <p class="step-subheading">Then, create your free Claude account</p>
+        <p class="step-intro">
+          You&rsquo;ll need this to log in. It&rsquo;s free to sign up, no credit card needed,
+          and new accounts get a small amount of free credit — plenty to read a few receipt
+          photos with.
         </p>
-        <p class="step-note">
-          Don&rsquo;t have a Claude Pro/Max plan? You can still try this for free — sign up for
-          a Claude Console account at
-          <a href="https://platform.claude.com" target="_blank" rel="noopener noreferrer">platform.claude.com</a>,
-          which gives new accounts a small amount of free credit (no credit card needed) that
-          works with Claude Code. Plenty to read a few receipt photos with.
-        </p>
+        <ol class="step-instructions">
+          <li>
+            Go to
+            <a href="https://platform.claude.com" target="_blank" rel="noopener noreferrer">platform.claude.com</a>
+            in your browser.
+          </li>
+          <li>
+            Click <strong>Sign up</strong> (top-right), then enter your email and create a
+            password — or sign up with your Google account.
+          </li>
+          <li>Check your inbox and click the verification link if you&rsquo;re asked to.</li>
+          <li>That&rsquo;s it — your account is ready, with free credit already applied.</li>
+        </ol>
       </div>
       <!-- /STEP 2 -->
 
@@ -538,6 +554,11 @@
               <div class="copy-content" id="step5-claude">claude</div>
               <button class="btn-copy" onclick="copyBlock('step5-claude', this)">Copy</button>
             </div>
+          </li>
+          <li>
+            The first time you do this, your browser will open asking you to log in. Sign in
+            with the account you created in Step 2. Once you see &ldquo;Login successful&rdquo;,
+            come back to your terminal window — Claude Code is now ready to use.
           </li>
         </ol>
         <p class="step-note">
