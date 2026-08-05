@@ -412,23 +412,35 @@
         <span class="step-number">Step 2</span>
         <h3 class="step-title">Install Claude Code</h3>
         <p class="step-intro">
-          This is a one-time install — just a normal download and double-click, no terminal
-          needed for this part.
+          This is a one-time install. We&rsquo;ll open a tool called PowerShell just to paste
+          in one line — don&rsquo;t worry about understanding it yet, we&rsquo;ll properly cover
+          terminals in the next step.
         </p>
         <ol class="step-instructions">
           <li>
-            Click here to download Claude Code for Windows:
-            <a href="https://claude.ai/api/desktop/win32/x64/setup/latest/redirect?utm_source=claude_code&amp;utm_medium=docs" target="_blank" rel="noopener noreferrer">Download Claude Code for Windows</a>
+            Click the <strong>Start</strong> button (Windows logo, bottom-left), type
+            <code>PowerShell</code>, then open <strong>Windows PowerShell</strong>.
           </li>
-          <li>Once it&rsquo;s downloaded, double-click the installer and follow the on-screen steps.</li>
           <li>
-            When it opens, sign in with your Anthropic account — or create a free one if you
-            don&rsquo;t have one yet.
+            Copy the line below, right-click inside the PowerShell window to paste it, then
+            press <strong>Enter</strong>:
+            <div class="copy-block code">
+              <div class="copy-content" id="step2-install-cmd">irm https://claude.ai/install.ps1 | iex</div>
+              <button class="btn-copy" onclick="copyBlock('step2-install-cmd', this)">Copy</button>
+            </div>
           </li>
+          <li>Wait for it to finish, then close the window.</li>
         </ol>
         <p class="step-note">
-          Note: Claude Code needs a Pro, Max, Team, or Enterprise plan to use the Code tab — if
-          you&rsquo;re on the free plan, it&rsquo;ll prompt you to upgrade.
+          The first time you actually run Claude Code (in Step 5), it&rsquo;ll ask you to log in
+          — or create a free Anthropic account — in your browser.
+        </p>
+        <p class="step-note">
+          Don&rsquo;t have a Claude Pro/Max plan? You can still try this for free — sign up for
+          a Claude Console account at
+          <a href="https://platform.claude.com" target="_blank" rel="noopener noreferrer">platform.claude.com</a>,
+          which gives new accounts a small amount of free credit (no credit card needed) that
+          works with Claude Code. Plenty to read a few receipt photos with.
         </p>
       </div>
       <!-- /STEP 2 -->
@@ -504,19 +516,33 @@
       <div class="step-card">
         <span class="step-number">Step 5</span>
         <h3 class="step-title">Open Claude Code in the Claude Grocery Project folder</h3>
-        <p class="step-intro">Now let&rsquo;s put it all together — this time by clicking, not typing.</p>
+        <p class="step-intro">Now let&rsquo;s put it all together.</p>
         <ol class="step-instructions">
-          <li>Open the Claude Code app you installed in Step 2 (find it in your Start menu).</li>
-          <li>Click the <strong>Code</strong> tab at the top.</li>
           <li>
-            Choose <strong>Local</strong> as the environment, then click
-            <strong>Select folder</strong> and pick your <code>Claude Grocery Project</code>
-            folder from the Desktop.
+            In your terminal, go to your Desktop:
+            <div class="copy-block code">
+              <div class="copy-content" id="step5-cd-desktop">cd Desktop</div>
+              <button class="btn-copy" onclick="copyBlock('step5-cd-desktop', this)">Copy</button>
+            </div>
+          </li>
+          <li>
+            Then go into your project folder:
+            <div class="copy-block code">
+              <div class="copy-content" id="step5-cd-project">cd "Claude Grocery Project"</div>
+              <button class="btn-copy" onclick="copyBlock('step5-cd-project', this)">Copy</button>
+            </div>
+          </li>
+          <li>
+            Now start Claude Code:
+            <div class="copy-block code">
+              <div class="copy-content" id="step5-claude">claude</div>
+              <button class="btn-copy" onclick="copyBlock('step5-claude', this)">Copy</button>
+            </div>
           </li>
         </ol>
         <p class="step-note">
-          Because you pointed it at the Claude Grocery Project folder, Claude Code can now see
-          your July 2026 and August 2026 folders — and any receipt photos you drop into them.
+          Because you started it inside the Claude Grocery Project folder, Claude Code can now
+          see your July 2026 and August 2026 folders — and any receipt photos you drop into them.
         </p>
       </div>
       <!-- /STEP 5 -->
