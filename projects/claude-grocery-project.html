@@ -204,6 +204,92 @@
       color: var(--color-muted);
       font-size: 0.95rem;
     }
+
+    /* ============================================================
+       STEP CARDS — one rounded square per step of the tutorial
+       ============================================================ */
+    .step-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-card);
+      padding: 28px 24px;
+      margin-bottom: 24px;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: var(--color-accent);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+      margin-bottom: 14px;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .step-intro {
+      color: var(--color-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .checklist input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--color-accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checklist label {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      cursor: pointer;
+    }
+
+    .checklist label strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .checklist a {
+      color: var(--color-accent-dark);
+      text-decoration: underline;
+    }
+
+    .checklist .copy-block {
+      margin-top: 10px;
+      margin-bottom: 0;
+      padding: 12px 14px;
+    }
+
+    .checklist .copy-block .copy-content {
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
@@ -231,33 +317,91 @@
     <section class="section">
       <h2 class="section-heading">Overview</h2>
       <p class="section-body">
-        This page is where the teaching materials for the Claude Grocery Project will live —
-        step-by-step instructions, prompts you can copy and paste straight into Claude Code,
-        and code snippets to try on your own machine.
+        Follow along step by step — each card below is one step of the training.
+        Instructions here are written for Windows/Microsoft computers.
       </p>
     </section>
 
-    <!-- PROMPTS TO COPY -->
-    <section class="section" id="prompts">
-      <h2 class="section-heading">Prompts to Copy</h2>
+    <!-- STEPS -->
+    <section class="section" id="steps">
+
+      <!-- STEP 1 — Pre-training setup -->
+      <div class="step-card">
+        <span class="step-number">Step 1</span>
+        <h3 class="step-title">Pre-training setup (send this out in advance)</h3>
+        <p class="step-intro">
+          Send a short pre-read/checklist a few days before, not day-of, so laptop setup
+          doesn&rsquo;t eat training time:
+        </p>
+
+        <ul class="checklist">
+
+          <li>
+            <input type="checkbox" id="step1-check1" />
+            <label for="step1-check1">
+              <strong>Install Node.js</strong>
+              Go to <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">nodejs.org</a>
+              and download the <strong>LTS</strong> version for Windows. Run the downloaded
+              <code>.msi</code> installer and click &ldquo;Next&rdquo; through the setup wizard,
+              keeping all the default options. Restart your computer once it&rsquo;s finished.
+            </label>
+          </li>
+
+          <li>
+            <input type="checkbox" id="step1-check2" />
+            <label for="step1-check2">
+              <strong>Install Claude Code</strong>
+              Open Windows Terminal (or PowerShell) and run this command:
+              <div class="copy-block code">
+                <div class="copy-content" id="step1-install-cmd">npm install -g @anthropic-ai/claude-code</div>
+                <button class="btn-copy" onclick="copyBlock('step1-install-cmd', this)">Copy</button>
+              </div>
+            </label>
+          </li>
+
+          <li>
+            <input type="checkbox" id="step1-check3" />
+            <label for="step1-check3">
+              <strong>Create/log into your Anthropic account, verify Claude Code runs</strong>
+              In the same terminal, type <code>claude</code> and press Enter. The first time,
+              it will ask you to log in or create a free Anthropic account through your browser.
+              Once you&rsquo;re back at the Claude Code prompt, type <code>hello</code> and press
+              Enter — if Claude replies, you&rsquo;re all set.
+            </label>
+          </li>
+
+          <li>
+            <input type="checkbox" id="step1-check4" />
+            <label for="step1-check4">
+              <strong>Create a folder on your Desktop called ClaudeCodeTraining</strong>
+              Right-click on an empty part of the Desktop → <strong>New</strong> →
+              <strong>Folder</strong>, then name it <code>ClaudeCodeTraining</code> (or
+              something similar).
+            </label>
+          </li>
+
+          <li>
+            <input type="checkbox" id="step1-check5" />
+            <label for="step1-check5">
+              <strong>If on Windows: install/enable a terminal that isn&rsquo;t cmd.exe</strong>
+              Windows&rsquo; built-in cmd.exe isn&rsquo;t great for this. Install
+              <strong>Windows Terminal</strong> for free from the Microsoft Store (search
+              &ldquo;Windows Terminal&rdquo;), or just use the terminal built into VS Code if
+              you already have that installed.
+            </label>
+          </li>
+
+        </ul>
+      </div>
+      <!-- /STEP 1 -->
 
       <!--
-        TEMPLATE — add more prompt blocks like this one as content is ready.
-        Each block needs: a unique id on .copy-content, and a matching
-        onclick="copyBlock('the-id', this)" on the button.
+        TEMPLATE FOR NEXT STEPS — copy the .step-card block above, update the
+        step-number label, title, and checklist items for the next step.
       -->
-      <div class="coming-soon">
-        Prompts are coming soon — check back shortly!
-      </div>
-    </section>
 
-    <!-- CODE TO COPY -->
-    <section class="section" id="code">
-      <h2 class="section-heading">Code to Copy</h2>
-      <div class="coming-soon">
-        Code snippets are coming soon — check back shortly!
-      </div>
     </section>
+    <!-- /STEPS -->
 
   </div>
 
