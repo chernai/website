@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Claude Grocery Project — Build. Download the project package and build along with Claude Code." />
+  <title>Claude Grocery Project — Build — Mark Chern</title>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       Same design tokens as the main site / Set Up page for a
+       consistent look across pages.
+       ============================================================ */
+    :root {
+      --color-accent:      #7AB648;
+      --color-accent-dark: #4A7A28;
+      --color-bg:          #FFFFFF;
+      --color-surface:     #F8F9F6;
+      --color-text:        #1A1A1A;
+      --color-muted:       #6B7280;
+      --color-border:      #E8EDE4;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-card: 12px;
+      --radius-pill: 999px;
+      --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+      --transition:  200ms ease;
+
+      --max-width: 640px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* BACK LINK */
+    .back-bar {
+      padding: 20px 0 0;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--color-accent);
+      cursor: pointer;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .btn-back:hover {
+      color: var(--color-accent-dark);
+    }
+
+    /* HEADER */
+    .project-header {
+      padding: 32px 0 8px;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 32px;
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent-dark);
+      margin-bottom: 8px;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .project-subtitle {
+      color: var(--color-muted);
+      font-size: 1rem;
+      padding-bottom: 24px;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .section-body {
+      color: var(--color-text);
+      font-size: 1rem;
+    }
+
+    /* DOWNLOAD CARD */
+    .download-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-card);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .download-filename {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-bottom: 18px;
+      word-break: break-all;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--color-accent);
+      color: #FFFFFF;
+      border-radius: var(--radius-pill);
+      padding: 14px 32px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .btn-download:hover {
+      background: var(--color-accent-dark);
+    }
+
+    /* WHAT'S INSIDE LIST */
+    .inside-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .inside-list li {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 16px 18px;
+    }
+
+    .inside-list code {
+      display: block;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      color: var(--color-accent-dark);
+      margin-bottom: 4px;
+    }
+
+    .inside-list span {
+      font-size: 0.92rem;
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- BACK LINK -->
+    <div class="back-bar">
+      <a class="btn-back" href="claude-grocery-project.html" aria-label="Back to Set Up">
+        ← Back to Set Up
+      </a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="project-header">
+      <span class="project-tag">Claude Code Project 1</span>
+      <h1 class="project-title">Claude Grocery Project</h1>
+      <p class="project-subtitle">
+        A hands-on Claude Code project — follow along, copy the prompts and code below,
+        and try it yourself.
+      </p>
+    </header>
+
+    <!-- BUILD -->
+    <section class="section">
+      <h2 class="section-heading">B. Build</h2>
+      <p class="section-body">
+        Everything you need is in one package below. Download it, unzip it, and follow the
+        docs inside to get building.
+      </p>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section">
+      <div class="download-card">
+        <p class="download-filename">claude-grocery-project-package.zip</p>
+        <a class="btn-download" href="downloads/claude-grocery-project-package.zip" download>
+          ⬇ Download the Project Package
+        </a>
+      </div>
+    </section>
+
+    <!-- WHAT'S INSIDE -->
+    <section class="section">
+      <h2 class="section-heading">What&rsquo;s Inside</h2>
+      <ul class="inside-list">
+        <li>
+          <code>API_KEY_SETUP.md</code>
+          <span>Full walkthrough for creating an Anthropic Console account, adding credit, generating your key, and setting it in Terminal/CMD/PowerShell.</span>
+        </li>
+        <li>
+          <code>copy-paste-cheatsheet.txt</code>
+          <span>Every command in exact run order — nothing to type from scratch.</span>
+        </li>
+        <li>
+          <code>my-notes-template.txt</code>
+          <span>Your personal scratch file — for your key, and your own notes as you go.</span>
+        </li>
+        <li>
+          <code>TEACHING_NOTES_vision.md</code>
+          <span>The &ldquo;why vision API&rdquo; walkthrough, with real examples.</span>
+        </li>
+        <li>
+          <code>server.js, extract-receipts.js, public/</code>
+          <span>The working app itself — server, extraction script, and dashboard.</span>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>

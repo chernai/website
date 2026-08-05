@@ -357,6 +357,24 @@
       font-size: 0.85rem;
       color: var(--color-muted);
     }
+
+    /* NEXT-STEP LINK — leads from one part of the project to the next */
+    .next-step {
+      display: block;
+      background: var(--color-accent);
+      color: #FFFFFF;
+      text-align: center;
+      border-radius: var(--radius-pill);
+      padding: 16px 24px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .next-step:hover {
+      background: var(--color-accent-dark);
+    }
   </style>
 </head>
 <body>
@@ -380,9 +398,9 @@
       </p>
     </header>
 
-    <!-- OVERVIEW -->
+    <!-- SET UP -->
     <section class="section">
-      <h2 class="section-heading">Overview</h2>
+      <h2 class="section-heading">A. Set Up</h2>
       <p class="section-body">
         Follow along step by step — each card below is one step of the training.
         Instructions here are written for Windows/Microsoft computers.
@@ -570,6 +588,13 @@
 
     </section>
     <!-- /STEPS -->
+
+    <!-- CONTINUE TO PART B -->
+    <section class="section">
+      <a class="next-step" href="claude-grocery-project-build.html">
+        Continue to Part B: Build →
+      </a>
+    </section>
 
   </div>
 
