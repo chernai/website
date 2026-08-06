@@ -411,15 +411,41 @@
             </div>
           </li>
           <li>
-            The first time you do this, your browser will open asking you to log in. Sign in
-            with the account you created earlier in Set Up (Step 3). Once you see
-            &ldquo;Login successful&rdquo;, come back to your terminal window — Claude Code is
-            now ready to use.
+            The moment you press Enter, Claude Code notices the API key you set up in Step 2
+            and asks whether to use it:
+            <img class="step-image" src="images/step3-api-key-detected.png" alt="Claude Code screen reading Detected a custom API key in your environment, with a Yes/No prompt" />
+            Choose <strong>1. Yes</strong> — even though &ldquo;2. No (recommended)&rdquo; is
+            highlighted by default, you want to say yes, since this is the key tied to the
+            credit you bought back in Set Up.
+          </li>
+          <li>
+            If this is the very first time you&rsquo;ve ever opened Claude Code on this
+            computer, you&rsquo;ll also be asked to pick a look:
+            <img class="step-image" src="images/step3-theme-picker.png" alt="Claude Code first-run screen asking you to choose a text style" />
+            Any option is fine here — you can change it later by typing <code>/theme</code>.
+          </li>
+          <li>
+            After that, you&rsquo;ll land on your prompt, ready to go:
+            <img class="step-image" src="images/step3-welcome-back.png" alt="Claude Code welcome screen showing the project folder and a note that the API key is overriding any saved login" />
+            The line at the bottom — <code>ANTHROPIC_API_KEY overriding saved Console key</code>
+            — confirms Claude Code is using the API key from Step 2, not any old login. Claude
+            Code is now ready to use.
           </li>
         </ol>
         <p class="step-note">
           Because you started it inside the claude-grocery-project folder, Claude Code can now
           see your july-2026 and august-2026 folders — and any receipt photos you drop into them.
+        </p>
+        <p class="step-note">
+          If instead you see a screen asking you to choose between a
+          <strong>Claude account with subscription</strong> and an
+          <strong>Anthropic Console account</strong>, Claude Code didn&rsquo;t find your API key:
+        </p>
+        <img class="step-image" src="images/step3-choose-login-method.png" alt="Claude Code login method chooser, shown only when no API key is detected in the environment" />
+        <p class="step-note">
+          Go back to Step 2 and make sure you ran the export/set command in this exact same
+          terminal window before typing <code>claude</code> — the key only applies to the
+          terminal session you set it in.
         </p>
       </div>
       <!-- /STEP 3 -->
