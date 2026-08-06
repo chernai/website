@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Claude Grocery Project — Build. Download the project package and build along with Claude Code." />
+  <meta name="description" content="Claude Grocery Project — Build. Get your API key and build your grocery dashboard with Claude Code." />
   <title>Claude Grocery Project — Build — Mark Chern</title>
 
   <!-- GOOGLE FONTS -->
@@ -22,6 +22,8 @@
       --color-text:        #1A1A1A;
       --color-muted:       #6B7280;
       --color-border:      #E8EDE4;
+      --color-code-bg:     #1A1A1A;
+      --color-code-text:   #F8F9F6;
 
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
@@ -128,69 +130,148 @@
       font-size: 1rem;
     }
 
-    /* DOWNLOAD CARD */
-    .download-card {
+    /* ============================================================
+       STEP CARDS — one rounded square per step of the tutorial
+       ============================================================ */
+    .step-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 24px;
       box-shadow: var(--shadow-card);
       padding: 28px 24px;
-      text-align: center;
+      margin-bottom: 24px;
     }
 
-    .download-filename {
-      font-family: 'SF Mono', Menlo, Consolas, monospace;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin-bottom: 18px;
-      word-break: break-all;
-    }
-
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+    .step-number {
+      display: inline-block;
       background: var(--color-accent);
       color: #FFFFFF;
-      border-radius: var(--radius-pill);
-      padding: 14px 32px;
+      font-size: 0.78rem;
       font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: background var(--transition);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+      margin-bottom: 14px;
     }
 
-    .btn-download:hover {
-      background: var(--color-accent-dark);
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
 
-    /* WHAT'S INSIDE LIST */
-    .inside-list {
-      list-style: none;
+    .step-intro {
+      color: var(--color-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .step-instructions {
+      list-style: decimal;
+      padding-left: 22px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
     }
 
-    .inside-list li {
+    .step-instructions code {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.85em;
+    }
+
+    .step-note {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    .step-subheading {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .step-subheading:first-of-type {
+      margin-top: 4px;
+    }
+
+    /* COPY BLOCKS — used for both single-line commands (code) and the
+       big multi-line Claude Code prompt (prompt) */
+    .copy-block {
+      position: relative;
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-card);
-      padding: 16px 18px;
+      box-shadow: var(--shadow-card);
+      padding: 18px 20px;
+      margin-bottom: 0;
     }
 
-    .inside-list code {
-      display: block;
+    .copy-block.code .copy-content {
+      background: var(--color-code-bg);
+      color: var(--color-code-text);
+      border-radius: 8px;
+      padding: 14px 16px;
       font-family: 'SF Mono', Menlo, Consolas, monospace;
-      font-size: 0.88rem;
-      color: var(--color-accent-dark);
-      margin-bottom: 4px;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      white-space: pre;
     }
 
-    .inside-list span {
-      font-size: 0.92rem;
+    .copy-block.prompt .copy-content {
+      background: var(--color-code-bg);
+      color: var(--color-code-text);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .copy-block-label {
+      font-size: 0.78rem;
+      font-weight: 600;
       color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .btn-copy:hover {
+      background: #EEF5E8;
+      border-color: var(--color-accent);
+    }
+
+    .btn-copy.copied {
+      color: var(--color-accent-dark);
+      border-color: var(--color-accent);
     }
   </style>
 </head>
@@ -219,49 +300,136 @@
     <section class="section">
       <h2 class="section-heading">B. Build</h2>
       <p class="section-body">
-        Everything you need is in one package below. Download it, unzip it, and follow the
-        docs inside to get building.
+        Same as before — follow along step by step, each card below is one step.
       </p>
     </section>
 
-    <!-- DOWNLOAD -->
-    <section class="section">
-      <div class="download-card">
-        <p class="download-filename">claude-grocery-project-package.zip</p>
-        <a class="btn-download" href="downloads/claude-grocery-project-package.zip" download>
-          ⬇ Download the Project Package
-        </a>
-      </div>
-    </section>
+    <!-- STEPS -->
+    <section class="section" id="steps">
 
-    <!-- WHAT'S INSIDE -->
-    <section class="section">
-      <h2 class="section-heading">What&rsquo;s Inside</h2>
-      <ul class="inside-list">
-        <li>
-          <code>API_KEY_SETUP.md</code>
-          <span>Full walkthrough for creating an Anthropic Console account, adding credit, generating your key, and setting it in Terminal/CMD/PowerShell.</span>
-        </li>
-        <li>
-          <code>copy-paste-cheatsheet.txt</code>
-          <span>Every command in exact run order — nothing to type from scratch.</span>
-        </li>
-        <li>
-          <code>my-notes-template.txt</code>
-          <span>Your personal scratch file — for your key, and your own notes as you go.</span>
-        </li>
-        <li>
-          <code>TEACHING_NOTES_vision.md</code>
-          <span>The &ldquo;why vision API&rdquo; walkthrough, with real examples.</span>
-        </li>
-        <li>
-          <code>server.js, extract-receipts.js, public/</code>
-          <span>The working app itself — server, extraction script, and dashboard.</span>
-        </li>
-      </ul>
+      <!-- STEP 1 — Getting Your API Key -->
+      <div class="step-card">
+        <span class="step-number">Step 1</span>
+        <h3 class="step-title">Getting Your API Key</h3>
+        <p class="step-intro">
+          We are building an app that can read your grocery receipts. Before the app can read
+          anything, we need to get an API key.
+        </p>
+        <ol class="step-instructions">
+          <li>
+            Go back to
+            <a href="https://platform.claude.com" target="_blank" rel="noopener noreferrer">platform.claude.com</a>,
+            the place you paid for credit.
+          </li>
+          <li>On the left sidebar, click <strong>API keys</strong>.</li>
+          <li>Click <strong>Create key</strong>.</li>
+          <li>Name the key <code>claude-grocery-project</code>.</li>
+          <li>Click <strong>Create</strong>.</li>
+          <li>Copy the key and paste it into a txt file (just to store for a while).</li>
+        </ol>
+      </div>
+      <!-- /STEP 1 -->
+
+      <!-- STEP 2 — Using Your API Key -->
+      <div class="step-card">
+        <span class="step-number">Step 2</span>
+        <h3 class="step-title">Using Your API Key</h3>
+        <p class="step-intro">
+          Now we need to tell your computer to use this key so the app can talk to Claude.
+          Copy the line below that matches your terminal, paste it into your txt file, replace
+          <code>xxxx</code> with your API key, and then paste the final command into your
+          terminal.
+        </p>
+
+        <p class="step-subheading">Mac (Terminal)</p>
+        <div class="copy-block code">
+          <div class="copy-content" id="step2-mac">export ANTHROPIC_API_KEY="xxxx"</div>
+          <button class="btn-copy" onclick="copyBlock('step2-mac', this)">Copy</button>
+        </div>
+
+        <p class="step-subheading">Windows (Command Prompt)</p>
+        <div class="copy-block code">
+          <div class="copy-content" id="step2-cmd">set ANTHROPIC_API_KEY=xxxx</div>
+          <button class="btn-copy" onclick="copyBlock('step2-cmd', this)">Copy</button>
+        </div>
+
+        <p class="step-subheading">Windows (PowerShell)</p>
+        <div class="copy-block code">
+          <div class="copy-content" id="step2-ps">$env:ANTHROPIC_API_KEY="xxxx"</div>
+          <button class="btn-copy" onclick="copyBlock('step2-ps', this)">Copy</button>
+        </div>
+
+        <p class="step-note">
+          Make sure there are no extra spaces before or after your API key before you paste it
+          into Terminal.
+        </p>
+      </div>
+      <!-- /STEP 2 -->
+
+      <!-- STEP 3 — Build Your Dashboard -->
+      <div class="step-card">
+        <span class="step-number">Step 3</span>
+        <h3 class="step-title">Build Your Dashboard</h3>
+        <p class="step-intro">
+          Now for the fun part. Claude Code is already open inside your
+          <code>claude-grocery-project</code> folder, with access to your
+          <code>july-2026</code> and <code>august-2026</code> receipt folders. Copy the entire
+          box below, paste it into Claude Code, and press Enter.
+        </p>
+
+        <div class="copy-block prompt">
+          <div class="copy-content" id="step3-prompt">Build me a dashboard called "My Groceries."
+
+Look through every receipt photo in my july-2026 and august-2026 folders. For each receipt, read every item, its price, and the date. Sort each item into a grocery category (Produce, Meat &amp; Seafood, Dairy &amp; Eggs, Bakery, Pantry &amp; Dry Goods, Beverages, Household, Snacks, Other).
+
+Save everything you extract into a simple data file so the app never needs to re-scan the receipts once it's built.
+
+Then build a single, self-contained dashboard (a webpage I can open just by double-clicking it, no server or install needed) titled "My Groceries" with:
+
+1. A summary at the top: total spent in July, total spent in August, combined total, and total number of items.
+2. A table listing every single item from both months, with columns for Date, Item, Category, Price, and Month. Let me sort the table by clicking column headers.
+3. A pie chart showing what percentage of total spending went to each category.
+4. A bar chart comparing total spending in July vs August.
+5. A question box where I can type things like "How much did I spend on milk?" or "What percentage of my total was on meat?" and get an instant answer based on the data — no internet or API call needed to answer, just look up the answer from the data you already extracted.
+
+Design it clean, modern, and uncluttered — plenty of white space, a simple color palette, readable fonts, and rounded cards. This is for my own personal use, so keep it as simple as possible to open and use.
+
+When you're done, tell me exactly which file to open and how.</div>
+          <button class="btn-copy" onclick="copyBlock('step3-prompt', this)">Copy</button>
+        </div>
+
+        <p class="step-note">
+          Once Claude Code finishes, it will tell you which file to open — just double-click it
+          to open your dashboard in your browser. No extra steps, no ongoing cost.
+        </p>
+      </div>
+      <!-- /STEP 3 -->
+
     </section>
+    <!-- /STEPS -->
 
   </div>
+
+  <script>
+    // ----------------------------------------------------------------
+    // COPY-TO-CLIPBOARD
+    // Call as: copyBlock('the-content-element-id', thisButtonElement)
+    // ----------------------------------------------------------------
+    function copyBlock(contentId, btn) {
+      var el = document.getElementById(contentId);
+      if (!el) return;
+
+      navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+        var original = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    }
+  </script>
 
 </body>
 </html>
