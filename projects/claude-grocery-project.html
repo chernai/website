@@ -326,6 +326,15 @@
       margin-bottom: 12px;
     }
 
+    .step-image {
+      display: block;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+      margin: 10px 0;
+    }
+
     /* Command reference list used in the "learn the terminal" step —
        each row is a copy-able command plus a plain-English meaning */
     .command-ref {
@@ -454,14 +463,21 @@
               <button class="btn-copy" onclick="copyBlock('step2-install-cmd', this)">Copy</button>
             </div>
           </li>
-          <li>Wait for it to finish, then close the window.</li>
+          <li>
+            Wait for it to finish, then close the window. When installation is complete, you
+            will see something like this:
+            <img class="step-image" src="images/step2-install-complete.png" alt="PowerShell showing Claude Code installation complete" />
+          </li>
         </ol>
+      </div>
+      <!-- /STEP 2 -->
 
-        <p class="step-subheading">Then, create your free Claude account</p>
+      <!-- STEP 3 — Enter Claude Console -->
+      <div class="step-card">
+        <span class="step-number">Step 3</span>
+        <h3 class="step-title">Enter Claude Console</h3>
         <p class="step-intro">
-          You&rsquo;ll need this to log in. It&rsquo;s free to sign up, no credit card needed,
-          and new accounts get a small amount of free credit — plenty to read a few receipt
-          photos with.
+          You&rsquo;ll need this to log in. And this is also where you get credits.
         </p>
         <ol class="step-instructions">
           <li>
@@ -469,19 +485,25 @@
             <a href="https://platform.claude.com" target="_blank" rel="noopener noreferrer">platform.claude.com</a>
             in your browser.
           </li>
+          <li>Sign up with your Google account.</li>
           <li>
-            Click <strong>Sign up</strong> (top-right), then enter your email and create a
-            password — or sign up with your Google account.
+            You&rsquo;ll see this:
+            <img class="step-image" src="images/step3-buy-credit.png" alt="Claude Console buy usage credit screen" />
+            Buy just $5 of credit — the credit is on me. You will need the credits for API
+            usage. If they ask for auto-reload, skip that. You will see this:
+            <img class="step-image" src="images/step3-credit-applied.png" alt="Claude Console showing $5.00 credit applied" />
           </li>
-          <li>Check your inbox and click the verification link if you&rsquo;re asked to.</li>
-          <li>That&rsquo;s it — your account is ready, with free credit already applied.</li>
+          <li>
+            That&rsquo;s it — your account is ready, with free credit already applied. We will
+            come back to this later. Thanks for your patience.
+          </li>
         </ol>
       </div>
-      <!-- /STEP 2 -->
+      <!-- /STEP 3 -->
 
-      <!-- STEP 3 — Open a Terminal -->
+      <!-- STEP 4 — Open a Terminal -->
       <div class="step-card">
-        <span class="step-number">Step 3</span>
+        <span class="step-number">Step 4</span>
         <h3 class="step-title">Open a Terminal</h3>
         <p class="step-intro">
           A terminal is just a window where you type commands instead of clicking. We&rsquo;ll
@@ -500,11 +522,11 @@
           <code>wt</code>, and press Enter — it opens a terminal already sitting in that folder.
         </p>
       </div>
-      <!-- /STEP 3 -->
+      <!-- /STEP 4 -->
 
-      <!-- STEP 4 — Learn a few basic commands -->
+      <!-- STEP 5 — Learn a few basic commands -->
       <div class="step-card">
-        <span class="step-number">Step 4</span>
+        <span class="step-number">Step 5</span>
         <h3 class="step-title">Learn a few basic commands</h3>
         <p class="step-intro">
           Type these into the terminal you just opened, one at a time, pressing Enter after
@@ -544,11 +566,11 @@
           For <code>cd foldername</code>, swap in a real folder name — e.g. <code>cd Desktop</code>.
         </p>
       </div>
-      <!-- /STEP 4 -->
+      <!-- /STEP 5 -->
 
-      <!-- STEP 5 — Open Claude Code in the Claude Grocery Project folder -->
+      <!-- STEP 6 — Open Claude Code in the Claude Grocery Project folder -->
       <div class="step-card">
-        <span class="step-number">Step 5</span>
+        <span class="step-number">Step 6</span>
         <h3 class="step-title">Open Claude Code in the Claude Grocery Project folder</h3>
         <p class="step-intro">Now let&rsquo;s put it all together.</p>
         <ol class="step-instructions">
@@ -575,7 +597,7 @@
           </li>
           <li>
             The first time you do this, your browser will open asking you to log in. Sign in
-            with the account you created in Step 2. Once you see &ldquo;Login successful&rdquo;,
+            with the account you created in Step 3. Once you see &ldquo;Login successful&rdquo;,
             come back to your terminal window — Claude Code is now ready to use.
           </li>
         </ol>
@@ -584,7 +606,7 @@
           see your July 2026 and August 2026 folders — and any receipt photos you drop into them.
         </p>
       </div>
-      <!-- /STEP 5 -->
+      <!-- /STEP 6 -->
 
     </section>
     <!-- /STEPS -->
