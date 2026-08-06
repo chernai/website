@@ -436,23 +436,77 @@
         </p>
 
         <div class="copy-block prompt">
-          <div class="copy-content" id="step4-prompt">Build me a dashboard called "My Groceries."
+          <div class="copy-content" id="step4-prompt">Build me a self-contained dashboard called "My Groceries" from my receipt photos.
 
-Look through every receipt photo in my july-2026 and august-2026 folders. For each receipt, read every item, its price, and the date. Sort each item into a grocery category (Produce, Meat &amp; Seafood, Dairy &amp; Eggs, Bakery, Pantry &amp; Dry Goods, Beverages, Household, Snacks, Other).
+## Source
 
-Save everything you extract into a simple data file so the app never needs to re-scan the receipts once it's built.
+Read every receipt image in ./july-2026 and ./august-2026 (JPEGs, PNGs, phone screenshots). Hash the files first and skip byte-identical duplicates — tell me which you skipped. If a screenshot is small or cropped, check whether more of the receipt exists in the file before concluding something is unreadable.
 
-Then build a single, self-contained dashboard (a webpage I can open just by double-clicking it, no server or install needed) titled "My Groceries" with:
+## Extract
 
-1. A summary at the top: total spent in July, total spent in August, combined total, and total number of items.
-2. A table listing every single item from both months, with columns for Date, Item, Category, Price, and Month. Let me sort the table by clicking column headers.
-3. A pie chart showing what percentage of total spending went to each category.
-4. A bar chart comparing total spending in July vs August.
-5. A question box where I can type things like "How much did I spend on milk?" or "What percentage of my total was on meat?" and get an instant answer based on the data — no internet or API call needed to answer, just look up the answer from the data you already extracted.
+For each receipt: merchant, the date printed on the receipt, every line item, its price. Assign each item exactly one category: Produce, Meat &amp; Seafood, Dairy &amp; Eggs, Bakery, Pantry &amp; Dry Goods, Beverages, Household, Snacks, Other.
 
-Design it clean, modern, and uncluttered — plenty of white space, a simple color palette, readable fonts, and rounded cards. This is for my own personal use, so keep it as simple as possible to open and use.
+Rules that matter more than they look:
 
-When you're done, tell me exactly which file to open and how.</div>
+- **Reconcile every receipt to its own printed total.** Sum your extracted lines, compare to the TOTAL on the receipt, and report which balance and which don't. Don't hand me numbers you haven't balanced. On multi-line receipts the amount column often sits one or two lines below its item name — use the printed subtotals, unit counts and "N for $X" lines to prove your mapping is right.
+- **Multi-buy pricing:** where a line shows "2 for $7.95", record what was actually charged, not the shelf price.
+- **Taxes, service charge, GST, rounding and whole-receipt discounts are not items.** Record them as separate lines flagged as adjustments, so each month still equals the printed totals, but exclude them from the item count and the category chart.
+- **If part of a receipt is cropped out of the photo, do not silently drop it and do not guess.** Record the shortfall (printed total minus readable lines) as one explicit "unitemised" adjustment line, and surface it prominently. Totals must reflect money actually spent.
+- **If the receipt date disagrees with the folder it's filed in, surface the conflict** — don't quietly pick one. Store both: printed date in a date field, folder-derived month in a month field. Group by folder so the July-vs-August comparison works, and state plainly in the UI that months follow folders, not receipt dates.
+- **If no date is printed in the visible image,** leave it null and render "not printed" — never invent one or borrow the file's timestamp.
+- Flag receipts that aren't groceries at all (restaurant / dine-in) instead of blending them in.
+- Some shops ring up by department only ("FRUIT $1.50") with no product name — record as-is, note it.
+- Detect the currency from the receipts; don't assume USD.
+
+## Save the data
+
+Write ./grocery-data.json with everything: per-receipt metadata (merchant, printed date, printed total, reconciles yes/no, notes) and every line (date, month, item, category, price, item-vs-adjustment flag, plus a note showing the arithmetic wherever a discount was applied). Include a plain-language notes array listing every caveat you found.
+
+The dashboard must never re-read the images. Because I'll open the HTML by double-clicking (file:// origin), fetch() of that JSON is blocked by CORS — so embed an identical copy inline in the HTML as a JS object and keep the JSON as the record of extraction. After building, verify the embedded copy matches the JSON field-by-field and that the totals recompute.
+
+## Build ./My Groceries.html
+
+One file. No server, no build step, no CDN, no network calls of any kind. Hand-rolled inline SVG for the charts.
+
+Layout in this order — the summary and both charts form one unbroken cluster at the top:
+
+1. Header: title, one-line subtitle naming the source folders and the currency.
+
+2. "Read this first" — a **collapsed** disclosure listing every data caveat, most important first.
+
+3. Summary card: total spent in July, total spent in August, combined total, total items. Make the combined total a hero figure (~50px) with the other three beside it, separated by hairline dividers. Not four boxed tiles.
+
+4. Two chart cards side by side: category-share pie (wider, with its legend) and a July-vs-August bar chart.
+
+5. Question box (below).
+
+6. "Every line" — a **collapsed** disclosure holding the full table: Date, Item, Category, Price, Month, sortable by clicking any header, undated rows always sorting last. Put the row count in the closed summary label so it's useful shut. Sticky header inside a scroll region.
+
+## Chart rules
+
+- Map each category to one fixed colour used everywhere (pie, legend, table dots, answers). Colour follows the category, never its rank or sort position.
+- Max 8 hues; never generate or cycle a 9th. A zero-spend category gets grey and no slice.
+- The pie legend lists the amount and percentage for every category, so the chart is never the only way to read a value and colour-matching is never required.
+- Direct-label only slices with room (~&gt;=4%); the legend carries the rest.
+- The bar chart is one series across two months -&gt; one colour for both bars, no legend, values on the caps. Never a dual y-axis. Gridlines and axes are solid hairlines, never dashed.
+- Rounded data-ends on bars, square at the baseline. Separate pie slices with a 2px gap in the surface colour — not a contrasting border.
+- Tooltips on slices and bars; hovering a legend row highlights its slice and vice versa.
+
+## Question box
+
+Local offline Q&amp;A over the extracted data — pure lookup, no API. Handle: amounts ("how much did I spend on milk?"), percentages ("what percentage was on meat?"), month scope ("how much in August?"), counts, most/least expensive, average, and "breakdown by category".
+
+The bit that's easy to get wrong: **product words must search item names; category words must hit the category.** "milk" should return the milk line, not all of Dairy &amp; Eggs; "meat" should return the Meat &amp; Seafood category. So keep product words (milk, cheese, butter, eggs, bread, rice) out of your category synonym lists. When a word matches both, answer the primary reading and mention the other.
+
+Always name the denominator for a percentage — "18.7% of your $207.66 of itemised spending" — because the combined total also includes taxes and any unitemised portion, so the two bases differ. List the matching line items under each answer. On no match, say so and suggest what does work; never fabricate.
+
+## Design
+
+Clean, modern, uncluttered. Generous white space, rounded cards, restrained palette, readable system font stack ("Segoe UI Variable Display" first on Windows). Warm off-white page plane with near-white cards so cards read as lifted; soft two-layer shadows and hairline borders rather than hard strokes. Tabular figures in table columns and axis ticks, proportional figures on the big numbers. Include a dark mode with its own chosen colour steps (not an inverted flip), and honour prefers-reduced-motion.
+
+## Finally
+
+Tell me exactly which file to open and how. If Windows has no default app registered for .html, double-clicking shows an app picker — say which option to choose. Report anything you couldn't extract and why, rather than papering over it.</div>
           <button class="btn-copy" onclick="copyBlock('step4-prompt', this)">Copy</button>
         </div>
 
