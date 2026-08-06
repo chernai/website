@@ -363,12 +363,70 @@
           Make sure there are no extra spaces before or after your API key before you paste it
           into Terminal.
         </p>
+        <p class="step-note">
+          Important: you are pasting this into the terminal, before we open Claude (Claude is
+          not open yet).
+        </p>
+        <p class="step-note">
+          After you paste it, you will just see the next prompt, as if nothing happened. But
+          something did happen — to double-check that it actually took effect, type this and
+          press Enter:
+        </p>
+        <div class="copy-block code">
+          <div class="copy-content" id="step2-verify">echo $env:ANTHROPIC_API_KEY</div>
+          <button class="btn-copy" onclick="copyBlock('step2-verify', this)">Copy</button>
+        </div>
+        <p class="step-note">
+          It should print back the key you pasted in. If instead it prints nothing (blank
+          line), something didn&rsquo;t get set correctly.
+        </p>
       </div>
       <!-- /STEP 2 -->
 
-      <!-- STEP 3 — Build Your Dashboard -->
+      <!-- STEP 3 — Enter Claude Code -->
       <div class="step-card">
         <span class="step-number">Step 3</span>
+        <h3 class="step-title">Enter Claude Code</h3>
+        <p class="step-intro">Now let&rsquo;s put it all together.</p>
+        <ol class="step-instructions">
+          <li>
+            In your terminal, go to your Desktop:
+            <div class="copy-block code">
+              <div class="copy-content" id="step3-cd-desktop">cd desktop</div>
+              <button class="btn-copy" onclick="copyBlock('step3-cd-desktop', this)">Copy</button>
+            </div>
+          </li>
+          <li>
+            Then go into your project folder:
+            <div class="copy-block code">
+              <div class="copy-content" id="step3-cd-project">cd claude-grocery-project</div>
+              <button class="btn-copy" onclick="copyBlock('step3-cd-project', this)">Copy</button>
+            </div>
+          </li>
+          <li>
+            Now start Claude Code:
+            <div class="copy-block code">
+              <div class="copy-content" id="step3-claude">claude</div>
+              <button class="btn-copy" onclick="copyBlock('step3-claude', this)">Copy</button>
+            </div>
+          </li>
+          <li>
+            The first time you do this, your browser will open asking you to log in. Sign in
+            with the account you created earlier in Set Up (Step 3). Once you see
+            &ldquo;Login successful&rdquo;, come back to your terminal window — Claude Code is
+            now ready to use.
+          </li>
+        </ol>
+        <p class="step-note">
+          Because you started it inside the claude-grocery-project folder, Claude Code can now
+          see your july-2026 and august-2026 folders — and any receipt photos you drop into them.
+        </p>
+      </div>
+      <!-- /STEP 3 -->
+
+      <!-- STEP 4 — Build Your Dashboard -->
+      <div class="step-card">
+        <span class="step-number">Step 4</span>
         <h3 class="step-title">Build Your Dashboard</h3>
         <p class="step-intro">
           Now for the fun part. Claude Code is already open inside your
@@ -378,7 +436,7 @@
         </p>
 
         <div class="copy-block prompt">
-          <div class="copy-content" id="step3-prompt">Build me a dashboard called "My Groceries."
+          <div class="copy-content" id="step4-prompt">Build me a dashboard called "My Groceries."
 
 Look through every receipt photo in my july-2026 and august-2026 folders. For each receipt, read every item, its price, and the date. Sort each item into a grocery category (Produce, Meat &amp; Seafood, Dairy &amp; Eggs, Bakery, Pantry &amp; Dry Goods, Beverages, Household, Snacks, Other).
 
@@ -395,7 +453,7 @@ Then build a single, self-contained dashboard (a webpage I can open just by doub
 Design it clean, modern, and uncluttered — plenty of white space, a simple color palette, readable fonts, and rounded cards. This is for my own personal use, so keep it as simple as possible to open and use.
 
 When you're done, tell me exactly which file to open and how.</div>
-          <button class="btn-copy" onclick="copyBlock('step3-prompt', this)">Copy</button>
+          <button class="btn-copy" onclick="copyBlock('step4-prompt', this)">Copy</button>
         </div>
 
         <p class="step-note">
@@ -416,7 +474,7 @@ When you're done, tell me exactly which file to open and how.</div>
           But that would be another project, to learn how to use GitHub and Vercel in tandem.
         </p>
       </div>
-      <!-- /STEP 3 -->
+      <!-- /STEP 4 -->
 
     </section>
     <!-- /STEPS -->
