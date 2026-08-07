@@ -194,6 +194,27 @@
       border-color: var(--color-accent);
     }
 
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      background: var(--color-accent);
+      color: #FFFFFF;
+      border-radius: var(--radius-pill);
+      padding: 12px 24px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .btn-download:hover {
+      background: var(--color-accent-dark);
+    }
+
     /* COMING SOON NOTICE */
     .coming-soon {
       background: var(--color-surface);
@@ -438,6 +459,13 @@
             <code>july-2026</code> and one called <code>august-2026</code>.
           </li>
         </ol>
+        <p class="step-note">
+          Don&rsquo;t have receipt photos handy? Download 6 sample receipts to practice with —
+          drop a few into <code>july-2026</code> and the rest into <code>august-2026</code>.
+        </p>
+        <a class="btn-download" href="downloads/grocery-receipts.zip" download>
+          ⬇ Download 6 Sample Receipts
+        </a>
       </div>
       <!-- /STEP 1 -->
 
