@@ -387,6 +387,37 @@
       line-height: 1.5;
     }
 
+    /* Most Recent — embedded player */
+    .recent-player {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-card);
+    }
+
+    .recent-player iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .recent-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-top: 14px;
+    }
+
+    .recent-channel {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      margin-top: 4px;
+    }
+
     .channel-links {
       display: flex;
       flex-direction: column;
@@ -787,10 +818,35 @@
     </section>
     <!-- /ABOUT -->
 
+    <!-- MOST RECENT
+         To swap the video: change the ID in the iframe src and the link,
+         and update the title + channel below. -->
+    <section id="recent">
+      <div class="container animate" style="animation-delay: 150ms;">
+        <h2 class="section-heading">Most Recent</h2>
+        <div class="recent-player">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/jE3r3IwtatA"
+            title="Menopause Brain Fog: Is It Permanent, or Early Dementia?"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p class="recent-title">Menopause Brain Fog: Is It Permanent, or Early Dementia?</p>
+        <p class="recent-channel">
+          Midlife Brain Project &middot;
+          <a href="https://youtu.be/jE3r3IwtatA" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Watch on YouTube</a>
+        </p>
+      </div>
+    </section>
+    <!-- /MOST RECENT -->
+
     <!-- VIDEOS -->
     <section id="videos">
       <div class="container animate" style="animation-delay: 200ms;">
-        <h2 class="section-heading">Videos I&rsquo;ve Made</h2>
+        <h2 class="section-heading">Portfolio</h2>
         <div class="video-cards">
 
           <a
