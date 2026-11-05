@@ -409,6 +409,47 @@
       border: 0;
     }
 
+    /* Custom thumbnail shown until the viewer taps play */
+    .recent-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .recent-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .recent-poster::after {
+      content: '▶';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.9);
+      color: #FFFFFF;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 5px;
+      transition: transform var(--transition);
+    }
+
+    .recent-poster:hover::after {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
     .recent-title {
       font-family: var(--font-display);
       font-size: 1.25rem;
@@ -823,20 +864,20 @@
     <!-- /ABOUT -->
 
     <!-- MOST RECENT
-         To swap the video: change the ID in the iframe src and the link,
-         and update the title + channel below. -->
+         To swap the video: change data-video-id and the YouTube link,
+         the thumbnail image (images/), and the title + channel below. -->
     <section id="recent">
       <div class="container animate" style="animation-delay: 150ms;">
         <h2 class="section-heading">Most Recent</h2>
         <div class="recent-player">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/PHTKDT9FQ9U"
-            title="Aging Without Children in Singapore: Who Will Take Care of Us?"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+          <button
+            class="recent-poster"
+            data-video-id="PHTKDT9FQ9U"
+            onclick="playRecent(this)"
+            aria-label="Play Aging Without Children in Singapore: Who Will Take Care of Us?"
+          >
+            <img src="images/childless-millennials.jpg" alt="Childless rates rising: 15% of 60+, 20% of 50+, 28% of 40+" />
+          </button>
         </div>
         <p class="recent-title">Aging Without Children in Singapore: Who Will Take Care of Us?</p>
         <p class="recent-channel">
@@ -1093,6 +1134,19 @@
         void el.offsetWidth; // force reflow
         el.style.animation = '';
       });
+    }
+
+    // ----------------------------------------------------------------
+    // MOST RECENT — swap the custom thumbnail for the YouTube player
+    // ----------------------------------------------------------------
+    function playRecent(btn) {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.videoId + '?autoplay=1';
+      iframe.title = btn.getAttribute('aria-label').replace(/^Play /, '');
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      btn.replaceWith(iframe);
     }
 
     // ----------------------------------------------------------------
