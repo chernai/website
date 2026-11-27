@@ -1,0 +1,925 @@
+/* ============================================================
+   CSS CUSTOM PROPERTIES — COLOUR PALETTE & TOKENS
+   ============================================================ */
+:root {
+  --color-accent:      #7AB648;
+  --color-accent-dark: #4A7A28;
+  --color-bg:          #FFFFFF;
+  --color-surface:     #F8F9F6;
+  --color-text:        #1A1A1A;
+  --color-muted:       #6B7280;
+  --color-border:      #E8EDE4;
+  --color-tag-bg:      #EEF5E8;
+  --color-tag-text:    #4A7A28;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  --radius-card:   12px;
+  --radius-pill:   999px;
+  --shadow-card:   0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover:  0 6px 20px rgba(0, 0, 0, 0.11);
+  --transition:    300ms ease;
+
+  --max-width: 480px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================================
+   PAGE WRAPPER & LAYOUT
+   ============================================================ */
+.page {
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.page.active {
+  display: block;
+  opacity: 1;
+}
+
+.page.visible {
+  opacity: 1;
+}
+
+/* Page 1 — scrollable content */
+#page1 {
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* Page 2 — full-screen centred */
+#page2 {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+}
+
+#page2.active {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* ============================================================
+   ANIMATION — FADE IN + SLIDE UP (CSS keyframes, no JS required)
+   ============================================================ */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.animate {
+  opacity: 0;
+  animation: fadeSlideIn 500ms ease forwards;
+}
+
+/* Stagger delays per section */
+.animate:nth-child(1) { animation-delay:   0ms; }
+.animate:nth-child(2) { animation-delay: 100ms; }
+.animate:nth-child(3) { animation-delay: 200ms; }
+.animate:nth-child(4) { animation-delay: 300ms; }
+.animate:nth-child(5) { animation-delay: 400ms; }
+.animate:nth-child(6) { animation-delay: 500ms; }
+
+/* ============================================================
+   SECTION 1 — HERO
+   ============================================================ */
+#hero {
+  border-bottom: 1px solid var(--color-border);
+  padding-top: 48px;
+  padding-bottom: 36px;
+  text-align: center;
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Profile photo — circular container, image baked with ring */
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-surface);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.hero-title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-text);
+  font-style: italic;
+  text-align: center;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   SECTION 2 — ABOUT
+   ============================================================ */
+#about .about-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+/* ============================================================
+   SECTION 3 — WHAT I DO (ROLE CARDS)
+   ============================================================ */
+.role-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.role-card {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 18px 20px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.role-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.role-card .role-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.role-card .org-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-accent-dark);
+  margin-bottom: 4px;
+}
+
+.role-card .since-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.role-card .role-card-image {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  margin: 12px 0;
+}
+
+.role-card .role-card-cta {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   VIDEOS — THUMBNAIL CARDS
+   ============================================================ */
+.video-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.video-card {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Play badge */
+.video-thumb::after {
+  content: '▶';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px;
+}
+
+.video-body {
+  padding: 14px 18px 16px;
+}
+
+.video-type {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--color-accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.video-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.video-note {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Most Recent — embedded player */
+.recent-player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-card);
+}
+
+.recent-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Custom thumbnail shown until the viewer taps play */
+.recent-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  cursor: pointer;
+}
+
+.recent-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recent-poster::after {
+  content: '▶';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.9);
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  transition: transform var(--transition);
+}
+
+.recent-poster:hover::after {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.recent-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-top: 14px;
+}
+
+.recent-channel {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.channel-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hero-share {
+  margin-top: 6px;
+  padding: 10px 22px;
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   SECTION 4 — FOCUS AREAS (TAGS)
+   ============================================================ */
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* ============================================================
+   SECTION 5 — EDUCATION (TIMELINE)
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Vertical green line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.timeline-entry {
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.timeline-entry:last-child {
+  padding-bottom: 0;
+}
+
+/* Green dot */
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  border: 2px solid var(--color-bg);
+  outline: 2px solid var(--color-accent);
+}
+
+.timeline-institution {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.timeline-degree {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: 2px;
+}
+
+.timeline-years {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* ============================================================
+   SECTION 6 — CALL TO ACTION
+   ============================================================ */
+#cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 36px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-pill);
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+  border: 2px solid transparent;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-accent-dark);
+  border-color: var(--color-accent);
+}
+
+.btn-ghost:hover {
+  background: var(--color-tag-bg);
+}
+
+.btn-linkedin {
+  background: transparent;
+  color: #0A66C2;
+  border-color: #0A66C2;
+}
+
+.btn-linkedin:hover {
+  background: #EBF3FB;
+}
+
+.btn-full {
+  width: 100%;
+  max-width: 320px;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 4px;
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--color-accent-dark);
+}
+
+/* ============================================================
+   PAGE 2 — QR / SOCIAL PAGE
+   ============================================================ */
+#page2 {
+  background: var(--color-bg);
+  padding: 0;
+}
+
+.p2-back-bar {
+  padding: 20px 24px 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition);
+}
+
+.btn-back:hover {
+  color: var(--color-accent-dark);
+}
+
+.p2-centre {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px 16px;
+  text-align: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.p2-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.p2-subtitle {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.qr-wrapper {
+  background: #FFFFFF;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+#qrcode {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#qrcode canvas,
+#qrcode img {
+  border-radius: 4px;
+}
+
+.qr-caption {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-bottom: 32px;
+}
+
+.p2-touch-heading {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+
+.p2-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.p2-footer {
+  padding: 20px 24px 32px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* LinkedIn SVG icon sizing */
+.li-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   DESKTOP CENTRING — all content max 480px
+   ============================================================ */
+@media (min-width: 520px) {
+  #page1 {
+    padding-top: 0;
+  }
+
+  #hero {
+    padding-top: 56px;
+  }
+}
+/* ============================================================
+   SITE NAV — Latest / Portfolio
+   ============================================================ */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.site-nav a {
+  padding: 7px 18px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  transition: background var(--transition), color var(--transition);
+}
+
+.site-nav a:hover {
+  color: var(--color-accent-dark);
+}
+
+.site-nav a[aria-current="page"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* ============================================================
+   LATEST FEED — newest post first
+   ============================================================ */
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.post-date {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 12px;
+}
+
+.post-new {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+.post-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.post:first-child .post-title {
+  font-size: 1.35rem;
+}
+
+.post-note {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-top: 6px;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.post-meta a {
+  text-decoration: underline;
+}
+
+/* 16:9 player box; shows the thumbnail until tapped */
+.player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-card);
+}
+
+.player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  cursor: pointer;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster::after {
+  content: '▶';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.9);
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  transition: transform var(--transition);
+}
+
+.poster:hover::after {
+  transform: translate(-50%, -50%) scale(1.08);
+}
